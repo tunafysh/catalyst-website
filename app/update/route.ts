@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import crypto from "crypto"
-import Router from "next/router";
 
 export function GET(req: NextRequest) {
     let url = req.nextUrl
@@ -68,6 +67,6 @@ export function GET(req: NextRequest) {
     else {
         url.pathname = '/'
         searchparams.set("redirect", "true")
-        Router.push('/')
+        return NextResponse.rewrite(url)
     }
 }

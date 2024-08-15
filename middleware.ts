@@ -7,14 +7,14 @@ export function middleware(request: NextRequest) {
   let headers = request.headers.get("User-Agent")
   if (headers?.includes("PowerShell")){
     if (osname == "Windows"){
-      return NextResponse.rewrite(url+"install.ps1")
+      return NextResponse.rewrite(url+"scripts/install.ps1")
     }
     else {
-      return NextResponse.rewrite(url+"install")
+      return NextResponse.rewrite(url+"scripts/install")
     }
   }
   else if (headers?.includes("curl")){
     console.log("curl")
-    return NextResponse.rewrite(url+"install")
+    return NextResponse.rewrite(url+"scripts/install")
   }
 }

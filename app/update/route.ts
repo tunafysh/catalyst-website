@@ -66,7 +66,6 @@ export function GET(req: NextRequest) {
     }
     else {
         url.pathname = '/'
-        searchparams.set("redirect", "true")
-        return NextResponse.rewrite(url)
+        return NextResponse.redirect(url)
     }
 }

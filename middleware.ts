@@ -17,8 +17,4 @@ export function middleware(request: NextRequest) {
     console.log("curl")
     return NextResponse.rewrite(url+"install")
   }
-  else {
-    url.pathname = '/'
-    return NextResponse.rewrite(url)
-  }
 }

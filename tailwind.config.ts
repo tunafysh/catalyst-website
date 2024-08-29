@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      boxShadow: {
+        distributorshadow: "0px 0px 10px 7px #10B981CC",
+      },
       colors: {
         primaryclr: "#003C39",
         accentclr: "#16D765",

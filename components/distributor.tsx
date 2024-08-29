@@ -5,10 +5,10 @@ import { useRouter } from "next/router";
 import { useUrl } from "nextjs-current-url";
 
 export default function Distributor() {
-    const url = window.location.href
+    const url = window?.location.href
     const [copied, setCopied] = useState(false)
     const getOS = () => {
-        const userAgent = window.navigator.userAgent;
+        const userAgent = window?.navigator.userAgent;
         const windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'];
         let os = null;
 

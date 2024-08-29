@@ -12,7 +12,7 @@ export default function Home() {
 			<Badge variant="outline" className="text-emerald-500 border-emerald-500 h-fit">Alpha</Badge>
 			</div>
 			<ul className="flex flex-row list-none justify-between">
-				<motion.li whileHover={{ color: "#10B981" }} className="mr-5 font-bold cursor-pointer"><a href="">Docs</a></motion.li>
+				<motion.li whileHover={{ color: "#10B981" }} className="mr-5 font-bold cursor-pointer"><a href="https://github.com/tunafysh/Catalyst/wiki">Docs</a></motion.li>
 				<motion.li whileHover={{ color: "#10B981" }} className="font-bold cursor-pointer"><a href="https://github.com/tunafysh/Catalyst" target="_blank">Source</a></motion.li>
 			</ul>
 			</div>

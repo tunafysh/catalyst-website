@@ -24,7 +24,7 @@ export default function Distributor() {
     const [cmdString, setCmdString] = useState("")
 
     const copyClipboard = () => {
-        navigator.clipboard.writeText(cmdString).then(() => {}).catch(() => {
+        window?.navigator.clipboard.writeText(cmdString).then(() => {}).catch(() => {
             document.execCommand("copy")
         })
         setCopied(true)

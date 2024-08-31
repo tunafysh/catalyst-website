@@ -1,32 +1,38 @@
-import { NextRequest, NextResponse, userAgent } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { Catalyst } from './components/definitions/defs'
 
 export function middleware(request: NextRequest) {
-  const latestversion = 0.63
+  const latestversion: number = 0.63
   const url = request.nextUrl
-  const agentpattern = '/Catalyst\/(Windows|Unix)\/\d\.\d{2}\/(check|update)/g'
-  const { os } = userAgent(request)
-  let osname = os.name
-  let headers = request.headers.get("User-Agent")
-  if (headers?.includes("PowerShell")){
-    return NextResponse.rewrite(url+"scripts/install.ps1")
+  const agentpattern = /Catalyst\/(Windows|Unix)\/\d\.\d{2}\/(check|update)/
+  let useragent = request.headers.get("User-Agent")
+  if (useragent?.includes("PowerShell")){
+    return NextResponse.rewrite(url.origin+"/scripts/install.ps1")
   }
-  else if (headers?.includes("curl")){
-    return NextResponse.rewrite(url+"scripts/install")
+  if (useragent?.includes("curl")){
+    return NextResponse.rewrite(url.origin+"/scripts/install")
   }
-  else if (headers?.includes("Catalyst")) {
-    
-    const agent = headers.match(agentpattern)?.toString()
+  if (useragent?.match(agentpattern)) {
+    const agent = useragent.match(agentpattern)![0]
     const cly = new Catalyst()
-    if (agent != undefined) {
-      cly.parse(agent)
-      if (cly.action == "update") {
-        cly.update()
+    cly.parse(agent)
+    if (cly.action == "update") {
+      const updateResponse = cly.update(latestversion, url);
+      if (updateResponse instanceof Response) {
+        return updateResponse;
+      } else {
+        switch (updateResponse) {
+          case "updatewin":
+            return NextResponse.rewrite(url.origin+"/scripts/update.ps1")
+          case "updateunix":
+            return NextResponse.rewrite(url.origin+"/scripts/update")
+          default:
+            return NextResponse.next();
+        }
       }
-      else {
-        cly.checkupd()
-
-      }
+    }
+    else {
+      return cly.checkupd(latestversion)
     }
   }
 }

@@ -6,7 +6,9 @@ export default function Distributor() {
     const [copied, setCopied] = useState<boolean>(false);
 
     const getOS = (): string => {
+        if (typeof window !== "undefined") {
         const userAgent = navigator.userAgent;
+        }
         const windowsPlatforms = ["Win32", "Win64", "Windows", "WinCE"];
         let os: string = "Unix";
 
@@ -35,7 +37,9 @@ export default function Distributor() {
         }
 
     useEffect(() => {
+        if (typeof window !== "undefined") {
         setUrl(window.location.href);
+        }
     }, []);
 
     return (

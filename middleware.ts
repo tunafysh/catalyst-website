@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Catalyst } from './components/definitions/defs'
+import { Catalyst, Clyversion } from './components/definitions/defs'
 
 export function middleware(request: NextRequest) {
-  const latestversion: number = 0.63
+  const latestversion: Clyversion = '0.6.3'
   const url = request.nextUrl
   const agentpattern = /Catalyst\/(Windows|Unix)\/\d\.\d{2}\/(check|update)/
   let useragent = request.headers.get("User-Agent")

@@ -1,3 +1,31 @@
 #!/bin/bash
 
-echo "Hello World"
+function info() {
+    echo -e "\e[1;97minfo:\033[0m $1"
+}
+function warn() {
+    echo -e "\e[1;93minfo:\033[0m $1"
+}
+function err() {
+    echo -e "\e[1;93minfo:\033[0m $1"
+}
+
+info "Initiating installation"
+
+if [[ -d "~/.catalyst" ]]; then
+
+    read -n1 -p "Catalyst already installed. Reainstall it?" REINSTALL
+
+    if [[ $REINSTALL == "y" ]]; then
+        info "Reinstalling"
+        rm -rf ~/.catalyst
+    else
+        info "Exiting"
+        exit 0
+    fi
+
+fi
+
+info "Downloading binary"
+
+curl -sSL https://github.com/tunafysh/Catalyst/releases/download/v0.0.2/catalyst-linux-amd64.tar.gz | tar -xzv -C ~/.catalyst/bin catalyst

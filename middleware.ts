@@ -4,7 +4,7 @@ import { Catalyst, Clyversion } from './components/definitions/defs'
 export function middleware(request: NextRequest) {
   const latestversion: Clyversion = '0.6.3'
   const url = request.nextUrl
-  const agentpattern = /Catalyst\/(Windows|Unix)\/\d\.\d{2}\/(check|update)/
+  const agentpattern = /Catalyst\/(Windows|Unix)\/\d\.\d\.\d\/(check|update)/
   let useragent = request.headers.get("User-Agent")
   if (useragent?.includes("PowerShell")){
     return NextResponse.rewrite(url.origin+"/scripts/install.ps1")

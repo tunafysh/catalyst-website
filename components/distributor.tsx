@@ -6,16 +6,16 @@ export default function Distributor() {
     const [copied, setCopied] = useState<boolean>(false);
 
     const getOS = (): string => {
+        let os: string = "Unix";
         if (typeof window !== "undefined") {
         const userAgent = navigator.userAgent;
-        }
         const windowsPlatforms = ["Win32", "Win64", "Windows", "WinCE"];
-        let os: string = "Unix";
-
+        
         if (windowsPlatforms.some((platform) => userAgent.includes(platform))) {
             os = "Windows";
         }
-
+        
+        }
         return os;
     };
 

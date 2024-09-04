@@ -18,7 +18,7 @@ export default function Home() {
 			</div>
 		<main className="flex h-screen min-w-screen flex-col items-center justify-center bg-emerald-50 text-black">
 			<div className="flex flex-col items-center justify-center">
-			<h1 className="text-5xl font-bold mb-5 opacity-70 text-center">Build systems <br /> <span className="bg-clip-text text-transparent bg-gradient-to-br from-cyan-500 to-emerald-500 from-40% to-60%">Made Easy</span></h1>
+			<h1 className="text-5xl font-bold mb-5 opacity-70 text-center">Build systems <br /> <span className="bg-clip-text text-transparent bg-gradient-to-br from-cyan-500 to-emerald-500 from-20% to-75%">Made Easy</span></h1>
 			<p className="text-lg font-bold mb-5 opacity-70 text-wrap w-[50vw] text-center">A build system, inspired by make, made in rust and that is scriptable with Lua.</p>
 			<Distributor />
 			</div>

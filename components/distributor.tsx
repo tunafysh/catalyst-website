@@ -49,7 +49,7 @@ export default function Distributor() {
                 boxShadow: `${copied ? "0px 0px 10px 7px #10B981CC" : "0"}`,
                 color: copied ? "#10B981" : "white",
             }}
-            className={`min-w-fit text-nowrap w-[30vw] h-10 bg-[#003C39] rounded flex flex-row justify-center items-center p-5 text-white font-bold text-center`}
+            className={`w-fit text-nowrap h-10 bg-[#003C39] rounded flex flex-row justify-center items-center p-5 text-white font-bold text-center`}
             onClick={copyClipboard}
         >
             {copied ? "Copied successfully!" : cmdString}

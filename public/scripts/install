@@ -1,5 +1,7 @@
 #!/bin/bash
 
+$platform = $(uname -ms)
+
 function info() {
     echo -e "\e[1;97minfo:\033[0m $1"
 }
@@ -26,6 +28,20 @@ if [[ -d "~/.catalyst" ]]; then
 
 fi
 
+info "Checking system"
+
+case $platform in
+'Linux aarch64' | 'Linux arm64')
+    target=linux-aarch64
+    ;;
+'MINGW64'*)
+    target=windows-x64
+    ;;
+'Linux x86_64' | *)
+    target=linux-x64
+    ;;
+esac
+
 info "Downloading binary"
 
-curl -sSL https://github.com/tunafysh/Catalyst/releases/download/v0.0.2/catalyst-linux-amd64.tar.gz | tar -xzv -C ~/.catalyst/bin catalyst
+curl -sSL --progress-bar https://github.com/tunafysh/Catalyst/releases/download/v0.0.2/catalyst-linux-amd64.tar.gz | tar -xzv -C ~/.catalyst/bin catalyst

@@ -48,7 +48,7 @@ switch ($cpuarch) {
 
 info "Downloading binary"
 
-Invoke-WebRequest -Uri "https://github.com/tunafysh/Catalyst/releases/latest/download/catalyst.exe" -OutFile "$env:LOCALAPPDATA\Catalyst\catalyst-windows-$cpuarch.zip"
+Invoke-WebRequest -Uri "https://github.com/tunafysh/Catalyst/releases/latest/download/catalyst-windows-$cpuarch.zip" -OutFile "$env:LOCALAPPDATA\Catalyst\catalyst-windows-$cpuarch.zip"
 
 info "Extracting binary"
 

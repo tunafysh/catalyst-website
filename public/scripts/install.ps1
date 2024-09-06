@@ -36,15 +36,6 @@ if ( Test-Path "$env:LOCALAPPDATA\Catalyst" ) {
 }
 
 $cpuarch = (Get-CimInstance Win32_OperatingSystem).OSArchitecture
-switch ($cpuarch) {
-    "32-bit" { $cpuarch = "x86" }
-    "64-bit" { $cpuarch = "x64" }
-    "ARM" { $cpuarch = "arm" }
-    default {
-        error "Unsupported CPU architecture: $cpuarch"
-        exit 1
-    }
-}
 
 info "Downloading binary"
 

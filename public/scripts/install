@@ -46,9 +46,8 @@ esac
 
 info "Downloading binary"
 
-<<<<<<< HEAD
-curl -sSL --progress-bar https://github.com/tunafysh/Catalyst/releases/download/v0.0.2/catalyst-linux-amd64.tar.gz | tar -xzv -C ~/.catalyst/bin catalyst
-=======
+curl -sSL --progress-bar https://github.com/tunafysh/Catalyst/releases/download/latest/catalyst-linux-amd64.tar.gz | tar -xzv -C ~/.catalyst/bin catalyst
+
 mkdir -p ~/.catalyst/bin
 
 cpu_arch=$(uname -m)
@@ -60,7 +59,7 @@ fi
 
 info "Installing Catalyst"
 
-curl -sSL https://github.com/tunafysh/Catalyst/releases/download/v0.0.2/catalyst-linux-$cpu_arch.zip | unzip -d ~/.catalyst/bin
+curl -sSL https://github.com/tunafysh/Catalyst/releases/download/latest/catalyst-linux-$cpu_arch.zip | unzip -d ~/.catalyst/bin
 
 info "Setting up Catalyst"
 
@@ -75,4 +74,3 @@ xdg-mime default $HOME/.local/share/applications/Catalyst.desktop x-scheme-handl
 
 echo -e "\e[1;92mCatalyst installed successfully\033[0m "
 exit 0
->>>>>>> 5428102 (Finished the scripts)

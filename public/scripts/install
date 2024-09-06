@@ -46,8 +46,6 @@ esac
 
 info "Downloading binary"
 
-curl -sSL --progress-bar https://github.com/tunafysh/Catalyst/releases/download/latest/catalyst-linux-amd64.tar.gz | tar -xzv -C ~/.catalyst/bin catalyst
-
 mkdir -p ~/.catalyst/bin
 
 cpu_arch=$(uname -m)

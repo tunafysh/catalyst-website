@@ -1,9 +1,21 @@
-"use client"
 import Distributor from "@/components/distributor"
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 export default function Home() {
+
+	const handleKeyDown = (event: KeyboardEvent) => {
+		console.log(event.key);
+	};
+
+	useEffect(() => {
+		window.addEventListener("keydown", handleKeyDown);
+		console.log(process.env.WEBHOOK_SECRET)
+		return () => window.removeEventListener("keydown", handleKeyDown);
+	}, []);
+
+	"use client"
 	return (
 		<div id="main" className="bg-emerald-50 text-emerald-950 overflow-hidden">
 			<div id="navbar" className="fixed top-0 left-0 w-full backdrop-blur-md h-[7vh] z-50 shadow-md flex flex-row justify-between items-center p-1 px-6">

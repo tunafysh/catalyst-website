@@ -1,10 +1,8 @@
 import { NextURL } from "next/dist/server/web/next-url";
 
-export type Clyversion = `${number}.${number}.${number}`
-
 export class Catalyst {
     os: string = '';
-    ver: Clyversion = '0.0.0';
+    ver: string = '0.0.0';
     action: string = '';
 
     parse(str: string) {
@@ -13,14 +11,14 @@ export class Catalyst {
         this.os = data[0];
         const version = data[1].split(".");
         if (version.length === 3 && version.every(part => !isNaN(Number(part)))) {
-            this.ver = version.join(".") as Clyversion;
+            this.ver = version.join(".") as string;
         } else {
             // handle invalid version format
         }
         this.action = data[2];
     }
 
-    checkupd(latestversion: Clyversion) {
+    checkupd(latestversion: string) {
         const ver = this.ver;
         if (ver > latestversion) {
             return new Response('largerver', { headers: { "Content-Type": "text/plain" } });
@@ -31,7 +29,7 @@ export class Catalyst {
         }
     }
 
-    update(latestversion: Clyversion, url: NextURL): Response | string {
+    update(latestversion: string, url: NextURL): Response | string {
         const ver = this.ver;
         const os = this.os;
         if (ver > latestversion) {

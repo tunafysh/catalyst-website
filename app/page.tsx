@@ -9,13 +9,16 @@ export default function Home() {
 		console.log(event.key);
 	};
 
+	let latestversion = process.env.WEBHOOK_SECRET;
+
+	"use client"
 	useEffect(() => {
 		window.addEventListener("keydown", handleKeyDown);
-		console.log(process.env.WEBHOOK_SECRET)
+		
+		console.log(latestversion)
 		return () => window.removeEventListener("keydown", handleKeyDown);
 	}, []);
 
-	"use client"
 	return (
 		<div id="main" className="bg-emerald-50 text-emerald-950 overflow-hidden">
 			<div id="navbar" className="fixed top-0 left-0 w-full backdrop-blur-md h-[7vh] z-50 shadow-md flex flex-row justify-between items-center p-1 px-6">

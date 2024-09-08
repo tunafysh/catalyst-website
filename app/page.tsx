@@ -1,23 +1,9 @@
-import Distributor from "@/components/distributor"
+"use client"
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
+import Distributor from "@/components/distributor"
 
 export default function Home() {
-
-	const handleKeyDown = (event: KeyboardEvent) => {
-		console.log(event.key);
-	};
-
-	let latestversion = process.env.WEBHOOK_SECRET;
-
-	"use client"
-	useEffect(() => {
-		window.addEventListener("keydown", handleKeyDown);
-		
-		console.log(latestversion)
-		return () => window.removeEventListener("keydown", handleKeyDown);
-	}, []);
 
 	return (
 		<div id="main" className="bg-emerald-50 text-emerald-950 overflow-hidden">

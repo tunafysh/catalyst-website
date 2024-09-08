@@ -22,6 +22,9 @@ export function middleware(req: NextRequest) {
         }
     }});
   }
+  else if (webhookSecret && githubEvent === "ping" && githubSignature) {
+    console.log("pong")
+  }
   if (useragent?.includes("PowerShell")){
     return NextResponse.rewrite(url.origin+"/scripts/install.ps1")
   }

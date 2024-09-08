@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { Catalyst } from './components/definitions/defs'
 
 export function middleware(req: NextRequest) {
-  let latestversion: string= '0.0.0';
+  let latestversion: string= '1.0.2';
   const url = req.nextUrl
   const agentpattern = /Catalyst\/(Windows|Unix)\/\d\.\d\.\d\/(check|update)/
   let useragent = req.headers.get("User-Agent")

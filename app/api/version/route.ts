@@ -9,8 +9,9 @@ export function POST(req: NextRequest) {
     let key = process.env.CATALYST_KEY as string;
     req.json().then((data) => {
        if (data.key === key) {
-            process.env.CATALYST_VERSION = data.version
+            process.env.CATALYST_VERSION = data.version as string
+            return NextResponse.json({status: "success"})
         }
     });
-    return NextResponse.json({status: "success"})
+    return NextResponse.json({status: "error"})
 }

@@ -12,8 +12,12 @@ export function POST(req: NextRequest) {
 
                 if (data.key == key) {
                     process.env.CATALYST_VERSION = data.version
-                    return NextResponse.json({status: "success?"})
+                    return NextResponse.json({status: "Updated value"})
+                }
+                else {
+                    return NextResponse.json({status: "Invalid key"})
                 }
             }
     });
+    return NextResponse.json({status: "finished"})
 }

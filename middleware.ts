@@ -6,6 +6,7 @@ export function middleware(req: NextRequest) {
   const url = req.nextUrl
   const agentpattern = /Catalyst\/(Windows|Unix)\/\d\.\d\.\d\/(check|update)/
   let useragent = req.headers.get("User-Agent")
+  
   if (useragent?.includes("PowerShell")){
     return NextResponse.rewrite(url.origin+"/scripts/install.ps1")
   }

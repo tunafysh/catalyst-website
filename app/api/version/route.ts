@@ -12,9 +12,8 @@ export function POST(req: NextRequest) {
 
                 if (data.key == key) {
                     process.env.CATALYST_VERSION = data.version
-                    return NextResponse.json({status: "success"})
+                    return NextResponse.json({status: "success?"})
                 }
             }
     });
-    return NextResponse.error()
 }

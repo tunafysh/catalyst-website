@@ -7,17 +7,18 @@ export function GET(req: NextRequest){
 
 export function POST(req: NextRequest) {
     let key = process.env.CATALYST_KEY as string;
+    let response: string= "";
     req.json().then((data) => {
             if(key != undefined){
 
                 if (data.key == key) {
                     process.env.CATALYST_VERSION = data.version
-                    return NextResponse.json({status: "Updated value"})
+                    response += JSON.stringify({status: "Updated value"})
                 }
                 else {
-                    return NextResponse.json({status: "Invalid key"})
+                    response += JSON.stringify({status: "Invalid key"})
                 }
             }
     });
-    return NextResponse.json({status: "finished"})
+    return NextResponse.json(response)
 }

@@ -6,19 +6,17 @@ export function GET(req: NextRequest){
 }
 
 export function POST(req: NextRequest) {
-    let key = process.env.CATALYST_KEY as string;
-    let response: string= "";
-    req.json().then((data) => {
-            if(key != undefined){
+    const key = req.nextUrl.searchParams.get("key")
+    const version = req.nextUrl.searchParams.get("version")
 
-                if (data.key == key) {
-                    process.env.CATALYST_VERSION = data.version
-                    response += JSON.stringify({status: "Updated value"})
-                }
-                else {
-                    response += JSON.stringify({status: "Invalid key"})
-                }
-            }
-    });
-    return NextResponse.json(response)
+    if(!key || !version) return NextResponse.json({message: "Missing parameters"})
+    
+    if(key === process.env.CATALYST_KEY){
+        process.env.CATALYST_VERSION = version
+    }
+    else{
+        return NextResponse.json({message: "Invalid key"})
+    }
+
+    return NextResponse.json({})
 }

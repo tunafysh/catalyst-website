@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 export default function Distributor() {
@@ -43,16 +43,28 @@ export default function Distributor() {
     }, []);
 
     return (
+        
         <motion.div
             transition={{ duration: 0.5 }}
             animate={{
                 boxShadow: `${copied ? "0px 0px 10px 7px #10B981CC" : "0"}`,
                 color: copied ? "#10B981" : "white",
             }}
-            className={`w-fit text-nowrap h-10 bg-[#003C39] rounded flex flex-row justify-center items-center p-5 text-white font-bold text-center`}
+            style={{ width: "fit-content" }}
+            className={`text-nowrap h-10 bg-[#003C39] rounded flex flex-row justify-center items-center p-5 text-white font-bold text-center cursor-pointer`}
+            ref={(el) => {
+                if (el) {
+                    setTimeout(() => {
+                        const { width } = el.getBoundingClientRect();
+                        el.style.width = `${width}px`;
+                    }, 1000)
+                }
+            }}
             onClick={copyClipboard}
         >
-            {copied ? "Copied successfully!" : cmdString}
+        <Suspense fallback={"Loading..."}>
+            {url===null? "Loading..." :copied ? "Copied successfully!" : cmdString}
+        </Suspense>
         </motion.div>
     );
 }

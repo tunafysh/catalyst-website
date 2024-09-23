@@ -21,6 +21,12 @@ export default function Distributor() {
 
     let cmdString: string = `bash <(curl -s ${url})`;
 
+    useEffect(() => {
+        if(url !== null) {
+            setCopied(false);
+        }
+    }, [url]);
+
     const copyClipboard = () => {
         if (typeof window !== "undefined") {
             navigator.clipboard.writeText(cmdString)
@@ -36,11 +42,11 @@ export default function Distributor() {
             cmdString = `irm ${url} | iex`;
         }
 
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-        setUrl(window.location.href);
-        }
-    }, []);
+        useEffect(() => {
+            if (typeof window !== "undefined") {
+            setUrl(window.location.href);
+            }
+        }, []);
 
     return (
         
@@ -49,17 +55,18 @@ export default function Distributor() {
             animate={{
                 boxShadow: `${copied ? "0px 0px 10px 7px #10B981CC" : "0"}`,
                 color: copied ? "#10B981" : "white",
+                cursor: url===null? "not-allowed" : "pointer",
             }}
             style={{ width: "fit-content" }}
             className={`text-nowrap h-10 bg-[#003C39] rounded flex flex-row justify-center items-center p-5 text-white font-bold text-center cursor-pointer`}
             ref={(el) => {
                 if (el) {
+                    setTimeout(() => {  
                         const { width } = el.getBoundingClientRect();
-                if (`${width}` > el.style.width) {
                         el.style.width = `${width}px`;
-
+                    },1500)
+                    
                 }
-               }
             }}
             onClick={copyClipboard}
         >

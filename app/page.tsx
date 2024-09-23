@@ -8,7 +8,7 @@ export default function Home() {
 
 	return (
 		<div className="bg-background text-foreground overflow-hidden">
-			<div id="navbar" className="fixed top-0 left-0 w-full backdrop-blur-md h-[9vh] z-50 shadow-md shadow-foreground/5 flex flex-row justify-between items-center p-1 px-6">
+			<div id="navbar" className="fixed top-0 left-0 w-full backdrop-blur-md h-[8vh] z-50 shadow-md shadow-foreground/5 flex flex-row justify-between items-center p-1 px-6">
 			<div className="flex flex-row items-center">
 			<h1 className="text-xl font-bold mr-2">Catalyst</h1>
 			<Badge variant="outline" className="text-emerald-500 border-emerald-500 h-fit rounded-full">Alpha</Badge>

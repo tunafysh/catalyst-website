@@ -23,7 +23,7 @@ const config = {
       },
       colors: {
         primaryclr: "#003C39",
-        accentclr: "#16D765",
+        accentclr: "#10B981",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

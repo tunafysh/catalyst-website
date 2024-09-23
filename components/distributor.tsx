@@ -53,12 +53,13 @@ export default function Distributor() {
             style={{ width: "fit-content" }}
             className={`text-nowrap h-10 bg-[#003C39] rounded flex flex-row justify-center items-center p-5 text-white font-bold text-center cursor-pointer`}
             ref={(el) => {
+              if (url!==null) {
                 if (el) {
-                    setTimeout(() => {
                         const { width } = el.getBoundingClientRect();
                         el.style.width = `${width}px`;
-                    }, 1000)
+
                 }
+               }
             }}
             onClick={copyClipboard}
         >

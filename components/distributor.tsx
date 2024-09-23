@@ -55,7 +55,7 @@ export default function Distributor() {
             ref={(el) => {
                 if (el) {
                         const { width } = el.getBoundingClientRect();
-                if (width > el.style.width) {
+                if (`${width}` > el.style.width) {
                         el.style.width = `${width}px`;
 
                 }

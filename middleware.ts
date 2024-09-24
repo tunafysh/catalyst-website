@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Catalyst } from './components/definitions/defs'
+import fs from 'fs'
 
 export function middleware(req: NextRequest) {
-  let latestversion: string= process.env.CATALYST_VERSION as string;
+  let latestversion: string= JSON.parse(fs.readFileSync("./components/versioning/latestver.json", "utf8")).version
   const url = req.nextUrl
   const agentpattern = /Catalyst\/(Windows|Unix)\/\d\.\d\.\d\/(check|update)/
   let useragent = req.headers.get("User-Agent")

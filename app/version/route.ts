@@ -1,25 +1,20 @@
+"use server";
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs"
+import { kv } from "@vercel/kv";
 
-export function GET(req: NextRequest){
-    if(!fs.existsSync("../latestver.json")){
-        fs.appendFileSync("../latestver.json", JSON.stringify({version: "1.1.0"}), "utf8")
-    }
-    let latestversion = JSON.parse(fs.readFileSync("../latestver.json", "utf8")).version
+export async function GET(req: NextRequest){
+    let latestversion = await kv.get<string>("version")
     return NextResponse.json(latestversion)
 }
 
-export function POST(req: NextRequest) {
+export async function POST(req: NextRequest) {
     const key = req.nextUrl.searchParams.get("key")
     const version = req.nextUrl.searchParams.get("version")
-    if(!fs.existsSync("../latestver.json")){
-        fs.appendFileSync("../latestver.json", JSON.stringify({version: "1.1.0"}), "utf8")
-    }
     let message = {}
     if(!key || !version) return NextResponse.json({message: "Missing parameters"})
     
     if(key === process.env.CATALYST_KEY){
-        fs.writeFileSync("../latestver.json", JSON.stringify({version: version}), "utf8")
+        await kv.set("version", version)
         message = {message: "Success"}
     }
     else{

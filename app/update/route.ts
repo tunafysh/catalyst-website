@@ -1,14 +1,11 @@
+"use server";
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs";
 import { Catalyst } from "@/components/definitions/defs";
-import path from "path";
+import { kv } from "@vercel/kv";
 
-export function GET(req: NextRequest) 
+export async function GET(req: NextRequest) 
 {
-    if(!fs.existsSync("../latestver.json")){
-        fs.appendFileSync("../latestver.json", JSON.stringify({version: "1.1.0"}), "utf8")
-    }
-    let latestversion = JSON.parse(fs.readFileSync("../latestver.json", "utf8")).version
+    let latestversion = await kv.get<string>("version") as string
     const url = req.nextUrl
     const agentpattern = /Catalyst\/(Windows|Unix)\/\d\.\d\.\d\/(check|update)/
     let useragent = req.headers.get("User-Agent")

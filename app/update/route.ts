@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs"
+import fs from "fs";
 import { Catalyst } from "@/components/definitions/defs";
+import path from "path";
 
-export function GET(req: NextRequest) {
-    let latestversion = JSON.parse(fs.readFileSync("./components/versioning/latestver.json", "utf8")).version
+export function GET(req: NextRequest) 
+{
+    if(!fs.existsSync("../latestver.json")){
+        fs.appendFileSync("../latestver.json", JSON.stringify({version: "1.1.0"}), "utf8")
+    }
+    let latestversion = JSON.parse(fs.readFileSync("../latestver.json", "utf8")).version
     const url = req.nextUrl
     const agentpattern = /Catalyst\/(Windows|Unix)\/\d\.\d\.\d\/(check|update)/
     let useragent = req.headers.get("User-Agent")

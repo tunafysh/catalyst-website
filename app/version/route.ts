@@ -4,7 +4,8 @@ import { kv } from "@vercel/kv";
 
 export async function GET(req: NextRequest){
     let latestversion = await kv.get<string>("version")
-    return NextResponse.json(latestversion)
+    if (typeof latestversion === "string") return NextResponse.json(latestversion.replace('"', ""))
+    else return NextResponse.json({message: "No version found"})
 }
 
 export async function POST(req: NextRequest) {

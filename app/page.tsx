@@ -1,8 +1,8 @@
 "use client"
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import Distributor from "@/components/distributor"
-import { ModeToggle } from "@/components/themetoggle";
+import Distributor from "@/components/elements/distributor"
+import { ModeToggle } from "@/components/elements/themetoggle";
 
 export default function Home() {
 

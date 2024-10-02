@@ -18,7 +18,8 @@ info "Initiating installation"
 
 if [[ -d "$HOME/.catalyst" ]]; then
 
-    read -r -n1 -p "Catalyst already installed. Reainstall it?" REINSTALL
+    read -r -n1 -p "Catalyst already installed. Reainstall it? [y/n]" REINSTALL
+    echo -e "\n"
 
     if [[ $REINSTALL == "y" ]]; then
         info "Reinstalling"
@@ -30,23 +31,9 @@ if [[ -d "$HOME/.catalyst" ]]; then
 
 fi
 
-info "Checking system"
-
-case $platform in
-'Linux aarch64' | 'Linux arm64')
-    target=linux-aarch64
-    ;;
-'MINGW64'*)
-    target=windows-x64
-    ;;
-'Linux x86_64' | *)
-    target=linux-x64
-    ;;
-esac
-
-info "Downloading binary"
-
 mkdir -p ~/.catalyst/bin
+
+info "Checking system"
 
 cpu_arch=$(uname -m)
 if [[ $cpu_arch == "x86_64" ]]; then
@@ -55,13 +42,17 @@ elif [[ $cpu_arch == "aarch64" ]]; then
     cpu_arch="arm64"
 fi
 
-info "Installing Catalyst"
+info "Downloading and Installing Catalyst"
 
-curl -sSL https://github.com/tunafysh/Catalyst/releases/download/latest/catalyst-linux-$cpu_arch.zip | unzip -d ~/.catalyst/bin
+touch ~/.catalyst/bin/catalyst
+
+wget -q https://github.com/tunafysh/Catalyst/releases/latest/download/catalyst-linux-${cpu_arch}.zip | unzip -d ~/.catalyst/bin/catalyst
+
+rm ~/.catalyst/bin/catalyst
 
 info "Setting up Catalyst"
 
-export PATH=~/.catalyst/bin:$PATH
+sudo sh -c export PATH=/home/$USER/.catalyst/bin:$PATH
 
 echo -e "[Desktop Entry]\nName=Catalyst URL Handler\n
 Exec=$HOME/.catalyst/bin/clyhandler %u\n

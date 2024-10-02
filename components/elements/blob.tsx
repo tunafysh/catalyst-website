@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { appstate } from "../definitions/defs";
 
-export default function Blob(ref: any) {
+export default function Blob({ status }: { status: number }) {
     const [mousePos, setMousePos] = useState([-500, -500]);
     useEffect(() => {
         const handleMouseMove = (event: MouseEvent) => {
@@ -22,6 +23,6 @@ export default function Blob(ref: any) {
     }, []);
 
     return (
-        <motion.div ref={ref} className="fixed w-32 -z-20 aspect-square rounded-full bg-accentclr" animate={{ x: mousePos[0], y: mousePos[1] }} />
+        <motion.div className={`${status === appstate.ok? "bg-accentclr": status === appstate.warn? "bg-yellow-300": "bg-red-500"} fixed w-32 -z-20 aspect-square rounded-full`} animate={{ x: mousePos[0], y: mousePos[1] }} />
     )
 }

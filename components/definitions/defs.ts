@@ -45,3 +45,9 @@ export class Catalyst {
         }
     }
 }
+
+export const appstate = Object.freeze({
+    "ok": 0,
+    "error": 1,
+    "warn": 2
+})

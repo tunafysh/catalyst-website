@@ -16,7 +16,7 @@ export default function Home() {
 		<div className="bg-transparent text-foreground overflow-hidden">
 			<div id="blur" className="fixed top-0 left-0 w-full -z-10 h-screen backdrop-blur-3xl"/>
 			<Blob status={status}/>
-			<div id="navbar" className="fixed top-0 left-0 w-full bg-white h-[8vh] z-50 shadow-md shadow-foreground/5 flex flex-row justify-between items-center p-1 px-6">
+			<div id="navbar" className="fixed top-0 left-0 w-full bg-background h-[8vh] z-50 shadow-md shadow-foreground/5 flex flex-row justify-between items-center p-1 px-6">
 			<div className="flex flex-row items-center">
 			<h1 className="text-xl font-bold mr-2">Catalyst</h1>
 			

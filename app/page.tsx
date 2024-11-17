@@ -5,12 +5,18 @@ import { motion } from "framer-motion";
 import Distributor from "@/components/elements/distributor"
 import { ModeToggle } from "@/components/elements/themetoggle";
 import Blob from "@/components/elements/blob";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { appstate } from "@/components/definitions/defs";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
 	const [status, setStatus] = useState<number>(appstate.ok);
+
+	useEffect(() => {
+		if( window != undefined){
+			window.localStorage.setItem("status", status.toString());
+		}
+	}, [status, setStatus])
 
 	return (
 		<div className="bg-transparent text-foreground overflow-hidden">
@@ -24,7 +30,7 @@ export default function Home() {
 
 			</div>
 			<ul className="flex flex-row list-none justify-between items-center">
-				<motion.li whileHover={{ color: status === appstate.ok? "#10B981": status === appstate.warn? "#F59E0B": "#EF4444" }} className="mr-5 font-bold cursor-pointer"><a href="https://github.com/tunafysh/Catalyst/wiki">Docs</a></motion.li>
+				<motion.li whileHover={{ color: status === appstate.ok? "#10B981": status === appstate.warn? "#F59E0B": "#EF4444" }} className="mr-5 font-bold cursor-pointer"><a href="/docs">Docs</a></motion.li>
 				<motion.li whileHover={{ color: status === appstate.ok? "#10B981": status === appstate.warn? "#F59E0B": "#EF4444" }} className="mr-5 font-bold cursor-pointer"><a href="https://github.com/tunafysh/Catalyst" target="_blank">Source</a></motion.li>
 				<ModeToggle/>
 			</ul>

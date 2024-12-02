@@ -1,17 +1,10 @@
 "use client"
-import Showdown from "showdown";
+
+import MarkdownView from "react-showdown";
 import { ModeToggle } from "@/components/elements/themetoggle";
 import { motion } from "framer-motion";
-import { getDocs } from "./actions";
-import Link from "next/link";
-import { useEffect } from "react";
 
 export default function Docs() {
-	const converter = new Showdown.Converter();
-	var convertHTML = "";
-	useEffect(() => {
-		getDocs().then((data) => convertHTML = converter.makeHtml(data));
-	}, [convertHTML])
 	return (
 		<div className="bg-transparent text-foreground overflow-hidden">
 			<div id="navbar" className="fixed top-0 left-0 w-full bg-background h-[8vh] z-50 shadow-md shadow-foreground/5 flex flex-row justify-between items-center p-1 px-6">
@@ -25,20 +18,13 @@ export default function Docs() {
 				<ModeToggle/>
 			</ul>
 			</div>
-			<ul>
-
-
-			<div dangerouslySetInnerHTML={{ __html: convertHTML }}></div>
-			{/* {docs.map((doc) => (
-				<li key={doc.fields.slug}>
-					<Link href={"/content/" + doc.fields.slug}>
-					{doc.fields.title}
-					</Link>
-					<p>{doc.fields.date}</p>
-				</li>
-			))} */}
-
-			</ul>
+			<div>
+			<MarkdownView 
+				markdown="### Test"
+				options={{ tables: true, emoji: true }}
+				className="text-foreground"
+			/>
+			</div>
         </div>
     )
 }
